@@ -1,10 +1,10 @@
-# luci-app-amlogic / 晶晨宝盒
+# luci-app-amlogic / 硬件盒子
 
 查看英文说明 | [View English description](README.md)
 
 支持对晶晨 s9xxx 系列（X96, HK1, H96等），全志（微加云），以及瑞芯微（贝壳云，我家云，电犀牛R66S/R68S，瑞莎5B/E25）的盒子进行在线管理，也支持在 Armbian 系统的 KVM 虚拟机中安装的 OpenWrt 里使用。目前的功能有 `安装 OpenWrt 至 EMMC`，`手动上传升级/在线下载更新` OpenWrt 固件或内核版本，`备份/恢复固件配置`，`快照管理` 及 `自定义固件/内核下载站点`等功能。
 
-在盒子中使用 OpenWrt 系统及晶晨宝盒插件，需要一些[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项)的支持，在`自定义编译 OpenWrt`时，请根据说明添加。在未编译晶晨宝盒的 OpenWrt 中使用一键脚本`手动安装`时，如果提示有缺少的依赖，请根据日志提示先安装依赖（`系统` > `软件包` > `刷新列表` > `搜索对应的软件包` > `安装`），然后`再重试`。
+在盒子中使用 OpenWrt 系统及硬件盒子插件，需要一些[必选软件包](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#1011-openwrt-必选项)的支持，在`自定义编译 OpenWrt`时，请根据说明添加。在未编译硬件盒子的 OpenWrt 中使用一键脚本`手动安装`时，如果提示有缺少的依赖，请根据日志提示先安装依赖（`系统` > `软件包` > `刷新列表` > `搜索对应的软件包` > `安装`），然后`再重试`。
 
 ## 手动安装
 
@@ -48,7 +48,7 @@ sed -i "s|.img.gz|.OPENWRT_SUFFIX|g" package/luci-app-amlogic/root/etc/config/am
 sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME/REPOSITORY'|g" package/luci-app-amlogic/root/etc/config/amlogic
 ```
 
-- 当你在编译 OpenWrt 时，修改以上 4 点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `晶晨宝盒` 的设置中修改。
+- 当你在编译 OpenWrt 时，修改以上 4 点即可实现自定义。以上信息也可以登录 OpenWrt 系统后，在 `系统` → `硬件盒子` 的设置中修改。
 
 ## 插件设置说明
 
@@ -95,7 +95,7 @@ sed -i "s|amlogic_kernel_path.*|amlogic_kernel_path 'https://github.com/USERNAME
 
 2. 手动上传更新：点击 `选择文件` 按钮，选择本地的 `OpenWrt 内核（把全套内核文件都上传）` 或 `OpenWrt 固件（推荐上传压缩格式的固件）` 并上传，上传完成后页面下方将根据上传的内容出现对应的 `更换 OpenWrt 内核` 或 `更新 OpenWrt 固件` 按钮，点击即可更新（更新完成后将自动重启）。
 
-3. 在线下载更新：点击 `仅更新宝盒插件` 按钮，可以把晶晨宝盒插件更新至最新版本；点击 `仅更新系统内核` 将根据 `插件设置` 中选择的内核分支下载对应的内核；点击 `完整更新全系统` 将根据 `插件设置` 中的下载站点下载最新固件；点击 `救援原系统内核` 按钮，会把当前设备正在使用的内核复制到目标磁盘里，方便在内核更新失败造成 OpenWrt 系统无法启动时实施救援，例如从 USB 启动 OpenWrt 系统，救援 eMMC 里的系统，支持在 `eMMC/NVME/sdX` 设备里相互救援。
+3. 在线下载更新：点击 `仅更新宝盒插件` 按钮，可以把硬件盒子插件更新至最新版本；点击 `仅更新系统内核` 将根据 `插件设置` 中选择的内核分支下载对应的内核；点击 `完整更新全系统` 将根据 `插件设置` 中的下载站点下载最新固件；点击 `救援原系统内核` 按钮，会把当前设备正在使用的内核复制到目标磁盘里，方便在内核更新失败造成 OpenWrt 系统无法启动时实施救援，例如从 USB 启动 OpenWrt 系统，救援 eMMC 里的系统，支持在 `eMMC/NVME/sdX` 设备里相互救援。
 
 4. 备份固件配置：点击 `打开列表` 按钮，可以编辑备份列表；点击 `下载备份` 按钮，可以把当前设备中 OpenWrt 的配置信息备份到本地；点击 `上传备份` 按钮，可以将备份的配置文件上传，恢复系统配置。点击 `创建快照`，`还原快照` 和 `删除快照` 按钮可以对快照进行相应管理。快照会记录当前 OpenWrt 系统中 `/etc` 目录下的全部配置信息，方便以后一键恢复至当前配置状态，作用和 `下载备份` 类似，仅保存在当前系统中，不支持下载使用。
 

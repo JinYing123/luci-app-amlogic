@@ -84,7 +84,7 @@ msgid "After uploading firmware (.img/.img.gz/.img.xz/.7z suffix) or kernel file
 msgstr "当上传文件列表中有 OpenWrt 固件（.img/.img.gz/.img.xz/.7z 后缀）或内核文件（3个内核文件）时，将自动显示相关操作按钮。"
 
 msgid "Amlogic Service"
-msgstr "晶晨宝盒"
+msgstr "硬件盒子"
 
 msgid "Restore Config / Replace OpenWrt Kernel"
 msgstr "恢复配置 / 升级 OpenWrt 内核"
@@ -429,7 +429,7 @@ msgid "Provide OpenWrt Firmware, Kernel and Plugin online check, download and up
 msgstr "提供 OpenWrt 固件，内核和插件在线检查，下载和更新服务。"
 
 msgid "Only update Amlogic Service"
-msgstr "仅更新晶晨宝盒"
+msgstr "仅更新硬件盒子"
 
 msgid "Update system kernel only"
 msgstr "仅更新系统内核"

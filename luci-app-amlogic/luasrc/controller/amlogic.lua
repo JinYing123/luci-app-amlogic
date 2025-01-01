@@ -5,19 +5,19 @@ function index()
 		return
 	end
 
-	local page = entry({ "admin", "system", "amlogic" }, alias("admin", "system", "amlogic", "info"), _("Amlogic Service"), 88)
+	local page = entry({ "admin", "system", "amlogic" }, alias("admin", "system", "amlogic", "upload"), _("Amlogic Service"), 88)
 	page.dependent = true
 	page.acl_depends = { "luci-app-amlogic" }
 
 	local platfrom = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep PLATFORM | awk -F'=' '{print $2}' | grep -oE '(amlogic|rockchip|allwinner|qemu)' | xargs") or "Unknown"
 	local install_menu = luci.sys.exec("cat /etc/flippy-openwrt-release 2>/dev/null | grep SHOW_INSTALL_MENU | awk -F'=' '{print $2}' | grep -oE '(yes|no)' | xargs") or "Unknown"
 
-	entry({ "admin", "system", "amlogic", "info" }, form("amlogic/amlogic_info"), _("Amlogic Service"), 1).leaf = true
+	-- entry({ "admin", "system", "amlogic", "info" }, form("amlogic/amlogic_info"), _("Amlogic Service"), 1).leaf = true
 	if (string.find(platfrom, "amlogic")) ~= nil or (string.find(install_menu, "yes")) ~= nil then
 		entry({ "admin", "system", "amlogic", "install" }, form("amlogic/amlogic_install"), _("Install OpenWrt"), 2).leaf = true
 	end
 	entry({ "admin", "system", "amlogic", "upload" }, form("amlogic/amlogic_upload"), _("Manually Upload Update"), 3).leaf = true
-	entry({ "admin", "system", "amlogic", "check" }, form("amlogic/amlogic_check"), _("Online Download Update"), 4).leaf = true
+	-- entry({ "admin", "system", "amlogic", "check" }, form("amlogic/amlogic_check"), _("Online Download Update"), 4).leaf = true
 	entry({ "admin", "system", "amlogic", "backup" }, form("amlogic/amlogic_backup"), _("Backup Firmware Config"), 5).leaf = true
 	entry({ "admin", "system", "amlogic", "backuplist" }, form("amlogic/amlogic_backuplist")).leaf = true
 	if (string.find(platfrom, "qemu")) == nil then
